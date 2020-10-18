@@ -5,6 +5,8 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +34,7 @@ import com.example.soccerleague.JSON.HttpHandler;
 import com.example.soccerleague.Model.Teams;
 import com.example.soccerleague.R;
 import com.google.android.material.appbar.AppBarLayout;
+import com.wang.avi.AVLoadingIndicatorView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -65,7 +68,7 @@ public class FragmentHome extends Fragment {
     EditText edtSearchItems;
 
     TextView txtLoadingDetails;
-    ProgressBar loadingBanner;
+    AVLoadingIndicatorView loadingBanner;
 
     @Nullable
     @Override
@@ -105,6 +108,34 @@ public class FragmentHome extends Fragment {
                 }
             }
         });
+
+        edtSearchItems.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                filter(editable.toString());
+            }
+        });
+    }
+
+    private void filter(String text){
+        ArrayList<Teams> temp = new ArrayList();
+        for(Teams teams: getAllTeams){
+            if(teams.getStrTeam().toLowerCase().contains(text.toLowerCase())){
+                temp.add(teams);
+            }
+        }
+        //Update Recyclerview
+        dashboardHomeAdapter.updateList(temp);
     }
 
     private class GetTeams extends AsyncTask<String, String, ArrayList<Teams>> {

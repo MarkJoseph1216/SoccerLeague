@@ -50,4 +50,7 @@ dependencies {
         exclude group: 'stax', module: 'stax-api'
         exclude group: 'stax', module: 'stax'
     }
+
+    implementation 'com.baoyz.pullrefreshlayout:library:1.2.0'
+    implementation 'com.wang.avi:library:2.1.3'
 }

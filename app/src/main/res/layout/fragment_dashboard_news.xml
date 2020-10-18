@@ -1,12 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewNews"
+    <androidx.appcompat.widget.Toolbar
+        android:layout_alignParentTop="true"
+        android:background="@color/colorWhite"
+        android:elevation="4dp"
+        android:id="@+id/youtubeToolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/txtTitle"
+                android:textColor="@color/colorBlack"
+                android:textSize="18sp"
+                android:text="News"
+                android:layout_centerInParent="true"
+                android:fontFamily="@font/lato_regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </RelativeLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+    <com.baoyz.widget.PullRefreshLayout
+        android:nestedScrollingEnabled="false"
+        android:layout_below="@+id/youtubeToolbar"
+        android:backgroundTint="@color/colorLightRed"
+        android:id="@+id/swipeRefresh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:nestedScrollingEnabled="true"
+                android:id="@+id/recyclerViewNews"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </RelativeLayout>
+    </com.baoyz.widget.PullRefreshLayout>
+
+    <com.wang.avi.AVLoadingIndicatorView
+        android:visibility="gone"
+        android:layout_marginTop="70dp"
+        android:id="@+id/loadingBanner"
+        app:indicatorColor="@color/colorLightRed"
+        app:indicatorName="BallBeatIndicator"
+        android:layout_centerInParent="true"
+        android:layout_width="35dp"
+        android:layout_height="35dp"/>
+
+    <TextView
+        android:visibility="gone"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/loadingBanner"
+        android:layout_centerInParent="true"
+        android:fontFamily="@font/lato_regular"
+        android:id="@+id/txtLoadingNews"
+        android:text="Loading news, Please wait..."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
 </RelativeLayout>

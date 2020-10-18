@@ -19,7 +19,7 @@ public class Teams {
     String strTeamFanart3;
     String strTeamFanart4;
 
-    public Teams(String idTeam, String strTeam, String strAlternate, String strStadiumThumb, String strStadiumDescription, String strStadiumLocation, String strWebsite, String strFacebook, String strTwitter, String strInstagram, String strDescriptionEN, String strTeamBadge,  String strTeamJersey, String strTeamLogo, String strTeamFanart3, String strTeamFanart4) {
+    public Teams(String idTeam, String strTeam, String strAlternate, String strStadiumThumb, String strStadiumDescription, String strStadiumLocation, String strWebsite, String strFacebook, String strInstagram, String strYoutube, String strDescriptionEN, String strTeamBadge,  String strTeamJersey, String strTeamLogo, String strTeamFanart3, String strTeamFanart4) {
         this.idTeam = idTeam;
         this.strTeam = strTeam;
         this.strAlternate = strAlternate;

@@ -6,9 +6,11 @@ import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.URLUtil;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -48,8 +50,6 @@ public class DashboardHomeAdapter extends RecyclerView.Adapter<DashboardHomeAdap
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        final Teams teamNames = itemsDefinition.get(position);
-
         if (position == 0) {
             holder.teamNames.setText("TEAMS");
             holder.txtSeeMoreItems.setVisibility(View.GONE);
@@ -63,6 +63,8 @@ public class DashboardHomeAdapter extends RecyclerView.Adapter<DashboardHomeAdap
             homeCategoriesAdapter = new HomeCategoriesAdapter(context, itemsDefinition);
             holder.recycleview_home_items.setAdapter(homeCategoriesAdapter);
         } else {
+            final Teams teamNames = itemsDefinition.get(position -1);
+
             Glide.with(context).load(teamNames.getStrTeamLogo()).into(holder.teamLogoName);
             Glide.with(context).load(teamNames.getStrTeamBadge()).into(holder.teamLogo);
             Glide.with(context).load(teamNames.getStrTeamFanart3()).into(holder.image_item);
@@ -106,6 +108,15 @@ public class DashboardHomeAdapter extends RecyclerView.Adapter<DashboardHomeAdap
                     context.startActivity(intent);
                 }
             });
+
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(context, TeamInformation.class);
+                    intent.putExtra("teamID", teamNames.getIdTeam());
+                    context.startActivity(intent);
+                }
+            });
         }
 
         if (position == itemsDefinition.size() -1) {
@@ -114,11 +125,15 @@ public class DashboardHomeAdapter extends RecyclerView.Adapter<DashboardHomeAdap
     }
 
     private void openWebURL(String url){
-        Intent intent = new Intent();
-        intent.setAction(Intent.ACTION_VIEW);
-        intent.addCategory(Intent.CATEGORY_BROWSABLE);
-        intent.setData(Uri.parse(url));
-        context.startActivity(intent);
+        try {
+            Intent intent = new Intent();
+            intent.setAction(Intent.ACTION_VIEW);
+            intent.addCategory(Intent.CATEGORY_BROWSABLE);
+            intent.setData(Uri.parse(URLUtil.guessUrl(url)));
+            context.startActivity(intent);
+        } catch (Exception e) {
+            Toast.makeText(context, "Can't open the url.", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -159,5 +174,10 @@ public class DashboardHomeAdapter extends RecyclerView.Adapter<DashboardHomeAdap
             txtTeamName = itemView.findViewById(R.id.txtTeamName);
             txtAlternateName = itemView.findViewById(R.id.txtAlternateName);
         }
+    }
+
+    public void updateList(ArrayList<Teams> list){
+        itemsDefinition = list;
+        notifyDataSetChanged();
     }
 }

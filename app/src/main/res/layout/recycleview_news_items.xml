@@ -2,13 +2,74 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <TextView
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
         android:id="@+id/txtTitle"
+        android:textSize="18sp"
         android:fontFamily="@font/lato_regular"
         android:textColor="@color/colorBlack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+
+    <TextView
+        android:layout_below="@+id/txtTitle"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:id="@+id/txtPubDate"
+        android:fontFamily="@font/lato_regular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:textSize="14sp"
+        android:autoLink="all"
+        android:layout_below="@+id/txtPubDate"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:id="@+id/txtDescription"
+        android:fontFamily="@font/lato_regular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:textSize="14sp"
+        android:layout_below="@+id/txtDescription"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:text="News Link:"
+        android:textColor="@color/colorBlack"
+        android:id="@+id/txtNewsTitle"
+        android:fontFamily="@font/lato_regular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:textColorLink="@color/colorLightRed"
+        android:textSize="14sp"
+        android:autoLink="all"
+        android:layout_marginBottom="20dp"
+        android:layout_below="@+id/txtNewsTitle"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:textColor="@color/colorLightRed"
+        android:id="@+id/txtNewsLink"
+        android:fontFamily="@font/lato_regular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <View
+        android:id="@+id/viewSeparator"
+        android:background="@color/lighGray"
+        android:layout_below="@+id/txtNewsLink"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"/>
 
 </RelativeLayout>
