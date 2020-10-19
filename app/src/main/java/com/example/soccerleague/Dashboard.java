@@ -9,7 +9,7 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 import com.example.soccerleague.Fragments.FragmentHome;
-import com.example.soccerleague.Fragments.FragmentList;
+import com.example.soccerleague.Fragments.FragmentLeague;
 import com.example.soccerleague.Fragments.FragmentNews;
 import com.example.soccerleague.Fragments.FragmentSchedules;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -19,6 +19,8 @@ public class Dashboard extends AppCompatActivity {
     BottomNavigationView bottomNavigation;
     FrameLayout frameLayout;
 
+    String fragmentStatus = "";
+
     // BOTTOM NAVIGATION LISTENER
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -27,27 +29,46 @@ public class Dashboard extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    FragmentHome FragmentHome = new FragmentHome();
-                    FragmentManager managerhome = getSupportFragmentManager();
-                    managerhome.beginTransaction().replace(R.id.dashboard_frameLayout, FragmentHome, FragmentHome.getTag()).commit();
+                    if (fragmentStatus.equals("Home")) {
+
+                    } else {
+                        fragmentStatus = "Home";
+                        FragmentHome FragmentHome = new FragmentHome();
+                        FragmentManager managerhome = getSupportFragmentManager();
+                        managerhome.beginTransaction().replace(R.id.dashboard_frameLayout, FragmentHome, FragmentHome.getTag()).commit();
+                    }
                     return true;
 
                 case R.id.navigation_community:
-                    FragmentSchedules fragmentSchedules = new FragmentSchedules();
-                    FragmentManager managerSchedules = getSupportFragmentManager();
-                    managerSchedules.beginTransaction().replace(R.id.dashboard_frameLayout, fragmentSchedules, fragmentSchedules.getTag()).commit();
-                    return true;
+                    if (fragmentStatus.equals("Community")) {
 
+                    } else {
+                        fragmentStatus = "Community";
+                        FragmentSchedules fragmentSchedules = new FragmentSchedules();
+                        FragmentManager managerSchedules = getSupportFragmentManager();
+                        managerSchedules.beginTransaction().replace(R.id.dashboard_frameLayout, fragmentSchedules, fragmentSchedules.getTag()).commit();
+                    }
+                    return true;
                 case R.id.navigation_news:
-                    FragmentNews fragmentNews = new FragmentNews();
-                    FragmentManager managerNews = getSupportFragmentManager();
-                    managerNews.beginTransaction().replace(R.id.dashboard_frameLayout, fragmentNews, fragmentNews.getTag()).commit();
+                    if (fragmentStatus.equals("News")) {
+
+                    } else {
+                        fragmentStatus = "News";
+                        FragmentNews fragmentNews = new FragmentNews();
+                        FragmentManager managerNews = getSupportFragmentManager();
+                        managerNews.beginTransaction().replace(R.id.dashboard_frameLayout, fragmentNews, fragmentNews.getTag()).commit();
+                    }
                     return true;
 
-                case R.id.navigation_list:
-                    FragmentList fragmentList = new FragmentList();
-                    FragmentManager managerList = getSupportFragmentManager();
-                    managerList.beginTransaction().replace(R.id.dashboard_frameLayout, fragmentList, fragmentList.getTag()).commit();
+                case R.id.navigation_league:
+                    if (fragmentStatus.equals("League")) {
+
+                    } else {
+                        fragmentStatus = "League";
+                        FragmentLeague fragmentList = new FragmentLeague();
+                        FragmentManager managerList = getSupportFragmentManager();
+                        managerList.beginTransaction().replace(R.id.dashboard_frameLayout, fragmentList, fragmentList.getTag()).commit();
+                    }
                     return true;
             }
             return false;

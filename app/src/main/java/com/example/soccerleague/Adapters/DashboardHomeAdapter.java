@@ -19,10 +19,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.example.soccerleague.Activities.TeamInformation;
 import com.example.soccerleague.KKViewPager;
 import com.example.soccerleague.Model.Teams;
 import com.example.soccerleague.R;
+import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,9 +53,9 @@ public class DashboardHomeAdapter extends RecyclerView.Adapter<DashboardHomeAdap
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, int position) {
         if (position == 0) {
-            holder.teamNames.setText("TEAMS");
+            holder.teamNames.setText("FOOTBALL TEAMS");
             holder.txtSeeMoreItems.setVisibility(View.GONE);
             holder.cardViewHolder.setVisibility(View.GONE);
             holder.teamLogo.setVisibility(View.GONE);
@@ -67,7 +71,22 @@ public class DashboardHomeAdapter extends RecyclerView.Adapter<DashboardHomeAdap
 
             Glide.with(context).load(teamNames.getStrTeamLogo()).into(holder.teamLogoName);
             Glide.with(context).load(teamNames.getStrTeamBadge()).into(holder.teamLogo);
-            Glide.with(context).load(teamNames.getStrTeamFanart3()).into(holder.image_item);
+            Glide.with(context)
+                    .load(teamNames.getStrTeamFanart3())
+                    .listener(new RequestListener<String, GlideDrawable>() {
+                        @Override
+                        public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
+                            holder.loadingBanner.setVisibility(View.VISIBLE);
+                            return false;
+                        }
+
+                        @Override
+                        public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
+                            holder.loadingBanner.setVisibility(View.GONE);
+                            return false;
+                        }
+                    })
+                    .into(holder.image_item);
 
             holder.teamNames.setText(teamNames.getStrTeam());
             holder.txtTeamName.setText(teamNames.getStrTeam());
@@ -152,6 +171,7 @@ public class DashboardHomeAdapter extends RecyclerView.Adapter<DashboardHomeAdap
         TextView txtTeamName, txtAlternateName;
         RelativeLayout cardViewHolder;
         ImageView teamLogoName;
+        AVLoadingIndicatorView loadingBanner;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -173,6 +193,8 @@ public class DashboardHomeAdapter extends RecyclerView.Adapter<DashboardHomeAdap
             image_item = itemView.findViewById(R.id.image_item);
             txtTeamName = itemView.findViewById(R.id.txtTeamName);
             txtAlternateName = itemView.findViewById(R.id.txtAlternateName);
+
+            loadingBanner = itemView.findViewById(R.id.loadingBanner);
         }
     }
 

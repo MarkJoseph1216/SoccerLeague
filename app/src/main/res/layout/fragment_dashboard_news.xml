@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorWhite"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.appcompat.widget.Toolbar
@@ -20,7 +21,7 @@
                 android:id="@+id/txtTitle"
                 android:textColor="@color/colorBlack"
                 android:textSize="18sp"
-                android:text="News"
+                android:text="Football News"
                 android:layout_centerInParent="true"
                 android:fontFamily="@font/lato_regular"
                 android:layout_width="wrap_content"
@@ -30,24 +31,28 @@
     </androidx.appcompat.widget.Toolbar>
 
     <com.baoyz.widget.PullRefreshLayout
-        android:nestedScrollingEnabled="false"
         android:layout_below="@+id/youtubeToolbar"
         android:backgroundTint="@color/colorLightRed"
         android:id="@+id/swipeRefresh"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-        <RelativeLayout
+        <androidx.core.widget.NestedScrollView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:nestedScrollingEnabled="true"
-                android:id="@+id/recyclerViewNews"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
-        </RelativeLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:nestedScrollingEnabled="false"
+                    android:id="@+id/recyclerViewNews"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+            </RelativeLayout>
+        </androidx.core.widget.NestedScrollView>
     </com.baoyz.widget.PullRefreshLayout>
 
     <com.wang.avi.AVLoadingIndicatorView

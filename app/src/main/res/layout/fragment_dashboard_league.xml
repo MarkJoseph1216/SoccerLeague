@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/colorWhite"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_alignParentTop="true"
+        android:background="@color/colorWhite"
+        android:elevation="4dp"
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/txtTitle"
+                android:textColor="@color/colorBlack"
+                android:textSize="18sp"
+                android:text="List of Football League"
+                android:layout_centerInParent="true"
+                android:fontFamily="@font/lato_regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </RelativeLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewList"
+        android:layout_below="@+id/toolbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <RelativeLayout
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        android:id="@+id/relativeLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="80dp">
+
+        <ProgressBar
+            android:layout_marginTop="5dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerInParent="true"
+            android:id="@+id/loadingLeague"
+            android:layout_width="35dp"
+            android:layout_height="35dp"/>
+
+        <TextView
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/lato_regular"
+            android:text="Loading data. Please Wait..."
+            android:layout_marginTop="10dp"
+            android:layout_centerInParent="true"
+            android:layout_below="@+id/loadingLeague"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
+</RelativeLayout>

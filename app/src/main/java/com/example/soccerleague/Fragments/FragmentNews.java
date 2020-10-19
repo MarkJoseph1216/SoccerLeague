@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,7 +20,6 @@ import com.example.soccerleague.News;
 import com.example.soccerleague.R;
 import com.wang.avi.AVLoadingIndicatorView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;

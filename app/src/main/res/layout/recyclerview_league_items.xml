@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:background="@color/colorWhite"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:elevation="6dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                app:civ_border_color="@color/colorGray"
+                android:id="@+id/imgLeagueLogo"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_alignParentLeft="true"
+                android:layout_width="40dp"
+                android:layout_height="40dp"/>
+
+            <TextView
+                android:layout_toRightOf="@+id/imgLeagueLogo"
+                android:textStyle="bold"
+                android:textColor="@color/colorBlack"
+                android:layout_toLeftOf="@+id/imgDropdown"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:fontFamily="@font/lato_regular"
+                android:id="@+id/txtLeagueName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:layout_toRightOf="@+id/imgLeagueLogo"
+                android:textColor="@color/colorGreen"
+                android:layout_toLeftOf="@+id/imgDropdown"
+                android:layout_marginBottom="15dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/txtLeagueName"
+                android:fontFamily="@font/lato_regular"
+                android:id="@+id/txtLeagueAlternate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <ImageView
+                android:layout_alignParentTop="true"
+                android:id="@+id/imgDropdown"
+                android:layout_centerInParent="true"
+                android:background="@drawable/arrow_down"
+                android:layout_marginTop="24dp"
+                android:layout_marginRight="20dp"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <View
+                android:id="@+id/viewSeparator"
+                android:layout_below="@+id/txtLeagueAlternate"
+                android:background="@color/colorGray"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
+            <RelativeLayout
+                android:visibility="gone"
+                android:id="@+id/relativeLayoutItems"
+                android:layout_below="@+id/viewSeparator"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:id="@+id/imgBadge"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"/>
+
+                <TextView
+                    android:textColor="@color/colorBlack"
+                    android:fontFamily="@font/lato_regular"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="35dp"
+                    android:id="@+id/txtSport"
+                    android:layout_toRightOf="@+id/imgBadge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:textColor="@color/colorBlack"
+                    android:fontFamily="@font/lato_light"
+                    android:layout_below="@+id/txtSport"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:id="@+id/txtGender"
+                    android:layout_toRightOf="@+id/imgBadge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:fontFamily="@font/lato_light"
+                    android:layout_below="@+id/txtGender"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/colorGreen"
+                    android:id="@+id/txtInformedYear"
+                    android:layout_toRightOf="@+id/imgBadge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:fontFamily="@font/lato_light"
+                    android:layout_below="@+id/txtInformedYear"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorLightRed"
+                    android:id="@+id/txtVersusTeams"
+                    android:layout_toRightOf="@+id/imgBadge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:layout_alignParentLeft="true"
+                    android:fontFamily="@font/lato_light"
+                    android:layout_below="@+id/imgBadge"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorBlack"
+                    android:id="@+id/txtDescription"
+                    android:layout_toRightOf="@+id/imgBadge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <View
+                    android:layout_below="@+id/txtDescription"
+                    android:background="@color/colorGray"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"/>
+            </RelativeLayout>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>

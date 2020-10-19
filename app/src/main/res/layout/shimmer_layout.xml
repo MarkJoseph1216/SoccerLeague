@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <io.supercharge.shimmerlayout.ShimmerLayout
+        android:layout_below="@+id/toolbar"
+        android:id="@+id/shimmerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        app:shimmer_animation_duration="1200">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:background="@color/colorLighGray"
+                    android:scaleType="fitXY"
+                    android:layout_alignParentTop="true"
+                    android:id="@+id/imgSchedules"
+                    android:layout_width="match_parent"
+                    android:layout_height="220dp"/>
+
+                <TextView
+                    android:background="@color/colorLighGray"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/colorBlack"
+                    android:fontFamily="@font/lato_regular"
+                    android:layout_below="@+id/imgSchedules"
+                    android:id="@+id/txtEventName"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:background="@color/colorLighGray"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:fontFamily="@font/lato_regular"
+                    android:textColor="@color/colorLightRed"
+                    android:layout_below="@+id/txtEventName"
+                    android:id="@+id/txtSeason"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:background="@color/colorLighGray"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:fontFamily="@font/lato_regular"
+                    android:layout_below="@+id/txtSeason"
+                    android:id="@+id/txtHomeTeam"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:background="@color/colorLighGray"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:fontFamily="@font/lato_regular"
+                    android:layout_below="@+id/txtHomeTeam"
+                    android:id="@+id/txtAwayTeam"
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:background="@color/colorLighGray"
+                    android:textColor="@color/colorLightGreen"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:fontFamily="@font/lato_regular"
+                    android:layout_below="@+id/txtAwayTeam"
+                    android:id="@+id/txtStatus"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:background="@color/colorLighGray"
+                    android:textColor="@color/colorBlack"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:fontFamily="@font/nunito_regular"
+                    android:layout_below="@+id/txtStatus"
+                    android:id="@+id/txtDescription"
+                    android:layout_width="match_parent"
+                    android:layout_marginBottom="20dp"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:background="@color/colorLighGray"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:fontFamily="@font/nunito_regular"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:background="@color/colorLighGray"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:fontFamily="@font/nunito_regular"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:background="@color/colorLighGray"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:autoLink="all"
+                    android:fontFamily="@font/nunito_regular"
+                    android:layout_marginBottom="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:background="@color/colorLighGray"
+                    android:scaleType="fitXY"
+                    android:layout_alignParentTop="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="220dp"/>
+
+                <TextView
+                    android:background="@color/colorLighGray"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/colorBlack"
+                    android:fontFamily="@font/lato_regular"
+                    android:layout_below="@+id/imgSchedules"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:background="@color/colorLighGray"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:fontFamily="@font/lato_regular"
+                    android:textColor="@color/colorLightRed"
+                    android:layout_below="@+id/txtEventName"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:background="@color/colorLighGray"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:fontFamily="@font/lato_regular"
+                    android:layout_below="@+id/txtSeason"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:background="@color/colorLighGray"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:fontFamily="@font/lato_regular"
+                    android:layout_below="@+id/txtHomeTeam"
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:background="@color/colorLighGray"
+                    android:textColor="@color/colorLightGreen"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:fontFamily="@font/lato_regular"
+                    android:layout_below="@+id/txtAwayTeam"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:background="@color/colorLighGray"
+                    android:textColor="@color/colorBlack"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:fontFamily="@font/nunito_regular"
+                    android:layout_below="@+id/txtStatus"
+                    android:layout_width="match_parent"
+                    android:layout_marginBottom="20dp"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:background="@color/colorLighGray"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:fontFamily="@font/nunito_regular"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:background="@color/colorLighGray"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:fontFamily="@font/nunito_regular"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:background="@color/colorLighGray"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:autoLink="all"
+                    android:fontFamily="@font/nunito_regular"
+                    android:layout_marginBottom="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:background="@color/colorLighGray"
+                    android:scaleType="fitXY"
+                    android:layout_alignParentTop="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="220dp"/>
+
+                <TextView
+                    android:background="@color/colorLighGray"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/colorBlack"
+                    android:fontFamily="@font/lato_regular"
+                    android:layout_below="@+id/imgSchedules"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:background="@color/colorLighGray"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:fontFamily="@font/lato_regular"
+                    android:textColor="@color/colorLightRed"
+                    android:layout_below="@+id/txtEventName"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:background="@color/colorLighGray"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:fontFamily="@font/lato_regular"
+                    android:layout_below="@+id/txtSeason"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:background="@color/colorLighGray"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:fontFamily="@font/lato_regular"
+                    android:layout_below="@+id/txtHomeTeam"
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:background="@color/colorLighGray"
+                    android:textColor="@color/colorLightGreen"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:fontFamily="@font/lato_regular"
+                    android:layout_below="@+id/txtAwayTeam"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:background="@color/colorLighGray"
+                    android:textColor="@color/colorBlack"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:fontFamily="@font/nunito_regular"
+                    android:layout_below="@+id/txtStatus"
+                    android:layout_width="match_parent"
+                    android:layout_marginBottom="20dp"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:background="@color/colorLighGray"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:fontFamily="@font/nunito_regular"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:background="@color/colorLighGray"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:fontFamily="@font/nunito_regular"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:background="@color/colorLighGray"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:autoLink="all"
+                    android:fontFamily="@font/nunito_regular"
+                    android:layout_marginBottom="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+        </LinearLayout>
+    </io.supercharge.shimmerlayout.ShimmerLayout>
+</androidx.core.widget.NestedScrollView>

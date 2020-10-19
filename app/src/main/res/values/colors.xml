@@ -23,6 +23,7 @@
     <color name="colorYoutube">#c4302b  </color>
 
     <color name="dot">#649c9c9c</color>
+    <color name="colorTheme">#7DC2FE</color>
 
     <color name="transparentColor">#4D999898</color>
 </resources>

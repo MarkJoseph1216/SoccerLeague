@@ -1,8 +1,7 @@
 package com.example.soccerleague.Fragments;
 
-import android.app.Activity;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
@@ -16,7 +15,6 @@ import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -34,6 +32,7 @@ import com.example.soccerleague.JSON.HttpHandler;
 import com.example.soccerleague.Model.Teams;
 import com.example.soccerleague.R;
 import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import org.json.JSONArray;
@@ -66,6 +65,7 @@ public class FragmentHome extends Fragment {
     DashboardHomeAdapter dashboardHomeAdapter;
     AppBarLayout appBarLayout;
     EditText edtSearchItems;
+    ImageView btnClose;
 
     TextView txtLoadingDetails;
     AVLoadingIndicatorView loadingBanner;
@@ -73,16 +73,15 @@ public class FragmentHome extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_dashboard_community, container, false);
+        View view = inflater.inflate(R.layout.fragment_dashboard_home, container, false);
         init(view);
         return view;
     }
 
     private void init(View view){
-        getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
-                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         getActivity().getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-        getActivity().getWindow().setStatusBarColor(Color.WHITE);
+        getActivity().getWindow().setStatusBarColor(getResources().getColor(R.color.colorWhite));
 
         txtLoadingDetails = view.findViewById(R.id.txtLoadingDetails);
         loadingBanner = view.findViewById(R.id.loadingBanner);
@@ -91,6 +90,8 @@ public class FragmentHome extends Fragment {
         recycleview_home = view.findViewById(R.id.recycleview_home);
         sliderDots = view.findViewById(R.id.SliderDots);
         viewPagerSports = view.findViewById(R.id.viewPagerSports);
+        btnClose = view.findViewById(R.id.btnClose);
+
         executor = Executors.newSingleThreadExecutor();
         getTeams = new GetTeams();
         getTeams.executeOnExecutor(executor);
@@ -123,6 +124,21 @@ public class FragmentHome extends Fragment {
             @Override
             public void afterTextChanged(Editable editable) {
                 filter(editable.toString());
+
+                if (editable.toString().length() > 0) {
+                    btnClose.setVisibility(View.VISIBLE);
+                } else {
+                    btnClose.setVisibility(View.GONE);
+                }
+            }
+        });
+
+        btnClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                filter("");
+                edtSearchItems.setText("");
+                btnClose.setVisibility(View.GONE);
             }
         });
     }
@@ -143,6 +159,7 @@ public class FragmentHome extends Fragment {
         protected void onPreExecute() {
             loadingBanner.setVisibility(View.VISIBLE);
             txtLoadingDetails.setVisibility(View.VISIBLE);
+            edtSearchItems.setVisibility(View.GONE);
         }
 
         protected ArrayList<Teams> doInBackground(String... params) {
@@ -205,6 +222,7 @@ public class FragmentHome extends Fragment {
             try {
                 loadingBanner.setVisibility(View.GONE);
                 txtLoadingDetails.setVisibility(View.GONE);
+                edtSearchItems.setVisibility(View.VISIBLE);
 
                 SportsViewPagerAdapter viewPagerAdapter = new SportsViewPagerAdapter(getContext(), result);
                 viewPagerSports.setAdapter(viewPagerAdapter);
