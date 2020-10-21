@@ -163,8 +163,7 @@
                 android:layout_height="40dp"/>
 
             <TextView
-                android:textColorLink="@color/colorGreen"
-                android:autoLink="all"
+                android:textColor="@color/colorGreen"
                 android:id="@+id/txtWebSite"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="30dp"

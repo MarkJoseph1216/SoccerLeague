@@ -5,15 +5,25 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.viewpager.widget.ViewPager;
 
+import android.annotation.TargetApi;
 import android.content.Intent;
+import android.net.http.SslError;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.SslErrorHandler;
+import android.webkit.WebChromeClient;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.soccerleague.Adapters.DashboardHomeAdapter;
@@ -24,6 +34,7 @@ import com.example.soccerleague.JSON.HttpHandler;
 import com.example.soccerleague.Model.Teams;
 import com.example.soccerleague.Model.TeamsInformation;
 import com.example.soccerleague.R;
+import com.wang.avi.AVLoadingIndicatorView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -45,18 +56,21 @@ public class TeamInformation extends AppCompatActivity {
     public static AsyncTask<String, String, ArrayList<TeamsInformation>> getTeamInformation;
     public static Executor executor;
 
+    ScrollView scrollView;
+    WebView webView;
+    AVLoadingIndicatorView loadingWebView;
+    TextView txtError;
+
     ArrayList<TeamsInformation> getTeamInformations = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_team_information);
-
         init();
     }
 
     private void init(){
-
         txtLeagueName = findViewById(R.id.txtLeagueName);
         txtFormedYear = findViewById(R.id.txtFormedYear);
         imageStatium = findViewById(R.id.imageStatium);
@@ -68,13 +82,25 @@ public class TeamInformation extends AppCompatActivity {
         imgTeamLogo = findViewById(R.id.imgTeamLogo);
         imgHeader = findViewById(R.id.imgHeader);
         txtDescription = findViewById(R.id.txtDescription);
+        scrollView = findViewById(R.id.scrollView);
+        txtError = findViewById(R.id.txtError);
+        loadingWebView = findViewById(R.id.loadingWebView);
 
-        Intent intent = getIntent();
-        String teamId = intent.getStringExtra("teamID");
+        try {
+            Intent intent = getIntent();
+            String teamId = intent.getStringExtra("teamID");
+            String webURL = intent.getStringExtra("webURL");
 
-        executor = Executors.newSingleThreadExecutor();
-        getTeamInformation = new GetTeamInformation();
-        getTeamInformation.executeOnExecutor(executor, teamId);
+            if (teamId == null) {
+                loadWebViewURL(webURL);
+            } else {
+                executor = Executors.newSingleThreadExecutor();
+                getTeamInformation = new GetTeamInformation();
+                getTeamInformation.executeOnExecutor(executor, teamId);
+            }
+        } catch (Exception e) {
+            e.getMessage();
+        }
 
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,6 +108,52 @@ public class TeamInformation extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    private void loadWebViewURL(String url){
+        if (!url.contains("https://")) {
+            url = "https://" + url;
+        }
+        webView = findViewById(R.id.webView);
+        webView.setVisibility(View.VISIBLE);
+        scrollView.setVisibility(View.GONE);
+        loadingWebView.setVisibility(View.VISIBLE);
+        txtError.setVisibility(View.GONE);
+
+        webView.getSettings().setLoadsImagesAutomatically(true);
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.getSettings().setAllowContentAccess(true);
+        webView.setWebViewClient(new WebViewClient()  {
+             @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                 view.loadUrl(url);
+                 return true;
+            }
+            @Override
+            @TargetApi(Build.VERSION_CODES.N)
+            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                view.loadUrl(request.getUrl().toString());
+                return true;
+            }
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                if (view.getProgress() >= 100) {
+                    loadingWebView.setVisibility(View.GONE);
+                }
+            }
+            @Override
+            public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+                super.onReceivedError(view, errorCode, description, failingUrl);
+                txtError.setVisibility(View.VISIBLE);
+            }
+            @Override
+            public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
+                handler.proceed(); // Ignore SSL certificate errors
+            }
+        });
+        webView.setWebChromeClient(new WebChromeClient());
+        webView.loadUrl(url);
     }
 
     private class GetTeamInformation extends AsyncTask<String, String, ArrayList<TeamsInformation>> {

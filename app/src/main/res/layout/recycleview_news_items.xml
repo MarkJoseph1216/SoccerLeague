@@ -28,7 +28,6 @@
 
     <TextView
         android:textSize="14sp"
-        android:autoLink="all"
         android:layout_below="@+id/txtPubDate"
         android:layout_marginTop="10dp"
         android:layout_marginRight="20dp"
@@ -54,7 +53,6 @@
     <TextView
         android:textColorLink="@color/colorLightRed"
         android:textSize="14sp"
-        android:autoLink="all"
         android:layout_marginBottom="20dp"
         android:layout_below="@+id/txtNewsTitle"
         android:layout_marginTop="5dp"

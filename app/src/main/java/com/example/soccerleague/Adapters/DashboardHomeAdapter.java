@@ -3,6 +3,8 @@ package com.example.soccerleague.Adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.text.SpannableString;
+import android.text.style.UnderlineSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -90,7 +92,10 @@ public class DashboardHomeAdapter extends RecyclerView.Adapter<DashboardHomeAdap
 
             holder.teamNames.setText(teamNames.getStrTeam());
             holder.txtTeamName.setText(teamNames.getStrTeam());
-            holder.txtWebSite.setText(teamNames.getStrWebsite());
+
+            SpannableString spanString = new SpannableString(teamNames.getStrWebsite());
+            spanString.setSpan(new UnderlineSpan(), 0, spanString.length(), 0);
+            holder.txtWebSite.setText(spanString);
 
             if (teamNames.getStrAlternate().equals("")) {
                 holder.txtAlternateName.setText("No Alternate Name");
@@ -136,6 +141,13 @@ public class DashboardHomeAdapter extends RecyclerView.Adapter<DashboardHomeAdap
                     context.startActivity(intent);
                 }
             });
+
+            holder.txtWebSite.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    openWebURL(teamNames.getStrWebsite());
+                }
+            });
         }
 
         if (position == itemsDefinition.size() -1) {
@@ -145,10 +157,8 @@ public class DashboardHomeAdapter extends RecyclerView.Adapter<DashboardHomeAdap
 
     private void openWebURL(String url){
         try {
-            Intent intent = new Intent();
-            intent.setAction(Intent.ACTION_VIEW);
-            intent.addCategory(Intent.CATEGORY_BROWSABLE);
-            intent.setData(Uri.parse(URLUtil.guessUrl(url)));
+            Intent intent = new Intent(context, TeamInformation.class);
+            intent.putExtra("webURL", url);
             context.startActivity(intent);
         } catch (Exception e) {
             Toast.makeText(context, "Can't open the url.", Toast.LENGTH_SHORT).show();

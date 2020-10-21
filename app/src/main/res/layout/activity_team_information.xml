@@ -39,6 +39,7 @@
     </androidx.cardview.widget.CardView>
 
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_below="@+id/toolbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
@@ -124,6 +125,31 @@
                 android:layout_height="wrap_content"/>
         </RelativeLayout>
     </ScrollView>
+
+    <WebView
+        android:visibility="gone"
+        android:layout_below="@+id/toolbar"
+        android:id="@+id/webView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <TextView
+        android:visibility="gone"
+        android:text="Please check your Internet Connection."
+        android:layout_centerInParent="true"
+        android:fontFamily="@font/lato_regular"
+        android:id="@+id/txtError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <com.wang.avi.AVLoadingIndicatorView
+        android:visibility="gone"
+        android:id="@+id/loadingWebView"
+        app:indicatorColor="@color/colorLightRed"
+        app:indicatorName="BallBeatIndicator"
+        android:layout_centerInParent="true"
+        android:layout_width="35dp"
+        android:layout_height="35dp"/>
 
     <RelativeLayout
         android:visibility="gone"

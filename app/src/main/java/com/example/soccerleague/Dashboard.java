@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentManager;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.example.soccerleague.Fragments.FragmentHome;
 import com.example.soccerleague.Fragments.FragmentLeague;
@@ -20,6 +21,7 @@ public class Dashboard extends AppCompatActivity {
     FrameLayout frameLayout;
 
     String fragmentStatus = "";
+    int exitCount = 0;
 
     // BOTTOM NAVIGATION LISTENER
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -30,20 +32,22 @@ public class Dashboard extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     if (fragmentStatus.equals("Home")) {
-
+                        exitCount = 0;
                     } else {
                         fragmentStatus = "Home";
+                        exitCount = 0;
                         FragmentHome FragmentHome = new FragmentHome();
                         FragmentManager managerhome = getSupportFragmentManager();
                         managerhome.beginTransaction().replace(R.id.dashboard_frameLayout, FragmentHome, FragmentHome.getTag()).commit();
                     }
                     return true;
 
-                case R.id.navigation_community:
+                case R.id.navigation_schedules:
                     if (fragmentStatus.equals("Community")) {
-
+                        exitCount = 0;
                     } else {
                         fragmentStatus = "Community";
+                        exitCount = 0;
                         FragmentSchedules fragmentSchedules = new FragmentSchedules();
                         FragmentManager managerSchedules = getSupportFragmentManager();
                         managerSchedules.beginTransaction().replace(R.id.dashboard_frameLayout, fragmentSchedules, fragmentSchedules.getTag()).commit();
@@ -51,9 +55,10 @@ public class Dashboard extends AppCompatActivity {
                     return true;
                 case R.id.navigation_news:
                     if (fragmentStatus.equals("News")) {
-
+                        exitCount = 0;
                     } else {
                         fragmentStatus = "News";
+                        exitCount = 0;
                         FragmentNews fragmentNews = new FragmentNews();
                         FragmentManager managerNews = getSupportFragmentManager();
                         managerNews.beginTransaction().replace(R.id.dashboard_frameLayout, fragmentNews, fragmentNews.getTag()).commit();
@@ -62,9 +67,10 @@ public class Dashboard extends AppCompatActivity {
 
                 case R.id.navigation_league:
                     if (fragmentStatus.equals("League")) {
-
+                        exitCount = 0;
                     } else {
                         fragmentStatus = "League";
+                        exitCount = 0;
                         FragmentLeague fragmentList = new FragmentLeague();
                         FragmentManager managerList = getSupportFragmentManager();
                         managerList.beginTransaction().replace(R.id.dashboard_frameLayout, fragmentList, fragmentList.getTag()).commit();
@@ -89,5 +95,15 @@ public class Dashboard extends AppCompatActivity {
         bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         bottomNavigation.setSelectedItemId(R.id.navigation_home);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (exitCount == 0) {
+            exitCount++;
+            Toast.makeText(this, "Press back to exit.", Toast.LENGTH_SHORT).show();
+        } else {
+            finish();
+        }
     }
 }

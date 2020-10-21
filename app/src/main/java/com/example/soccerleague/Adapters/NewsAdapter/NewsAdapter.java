@@ -1,13 +1,17 @@
 package com.example.soccerleague.Adapters.NewsAdapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.soccerleague.Activities.TeamInformation;
 import com.example.soccerleague.News;
 import com.example.soccerleague.R;
 
@@ -38,6 +42,18 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         holder.txtPubDate.setText("Publish Date: " + newsDetails.getPubDate());
         holder.txtDescription.setText(Html.fromHtml("Description: " + newsDetails.getDescription()));
         holder.txtNewsLink.setText(newsDetails.getLink());
+        holder.txtNewsLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    Intent intent = new Intent(context, TeamInformation.class);
+                    intent.putExtra("webURL", newsDetails.getLink());
+                    context.startActivity(intent);
+                } catch (Exception e) {
+                    Toast.makeText(context, "Can't open the url.", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         if (position == itemsDetails.size() -1) {
             holder.viewSeparator.setVisibility(View.GONE);

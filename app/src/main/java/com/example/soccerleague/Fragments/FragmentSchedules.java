@@ -80,11 +80,14 @@ public class FragmentSchedules extends Fragment {
                 recyclerViewSchedules.setLayoutManager(layoutManager);
 
                 List<Schedules.Event> schedules = response.body().getEvents(); // Data fetch from request
-                schedulesAdapter = new SchedulesAdapter(getContext(), schedules);
-                recyclerViewSchedules.setAdapter(schedulesAdapter);
-                shimmerLayout.stopShimmerAnimation();
-                linearShimmerLayout.setVisibility(View.GONE);
-                swipeRefresh.setRefreshing(false);
+
+                if (getActivity() != null) {
+                    schedulesAdapter = new SchedulesAdapter(getContext(), schedules);
+                    recyclerViewSchedules.setAdapter(schedulesAdapter);
+                    shimmerLayout.stopShimmerAnimation();
+                    linearShimmerLayout.setVisibility(View.GONE);
+                    swipeRefresh.setRefreshing(false);
+                }
             }
             @Override
             public void onFailure(Call<Schedules> call, Throwable t) {
