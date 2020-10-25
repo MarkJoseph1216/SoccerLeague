@@ -5,11 +5,11 @@ android {
     buildToolsVersion "30.0.2"
 
     defaultConfig {
-        applicationId "com.example.soccerleague"
-        minSdkVersion 16
+        applicationId "com.sports.footballcage"
+        minSdkVersion 18
         targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
+        versionCode 3
+        versionName "1.2"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

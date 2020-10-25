@@ -19,5 +19,9 @@
         android:id="@+id/navigation_league"
         android:icon="@drawable/bottom_contact_icon"
         android:title="League" />
+    <item
+        android:id="@+id/navigation_privacy"
+        android:icon="@drawable/ic_baseline_lock_24"
+        android:title="Privacy &amp; Terms" />
 
 </menu>

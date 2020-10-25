@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.soccerleague">
+    package="com.sports.footballcage">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:hardwareAccelerated="true"
         android:allowBackup="true"
-        android:icon="@drawable/soccerleaguelogo"
+        android:icon="@drawable/footballicon"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/soccerleaguelogo"
+        android:roundIcon="@drawable/footballicon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.TeamInformation"></activity>
-        <activity android:name=".Dashboard" />
-        <activity android:name=".Activities.SplashScreen">
+        <activity android:name="com.sports.footballcage.Activities.TeamInformation"></activity>
+        <activity android:name="com.sports.footballcage.Dashboard" />
+        <activity android:name="com.sports.footballcage.Activities.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
